@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="question/bank/competencies/db" VERSION="20261124" COMMENT="XMLDB file for Moodle question/bank/competencies"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="qbank_competencies" COMMENT="Competencies a question bank entry (every version of a question) is mapped to, as supporting evidence">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="questionbankentryid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The question bank entry, so the mapping survives new versions"/>
+        <FIELD NAME="competencyid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="questionbankentryid" TYPE="foreign" FIELDS="questionbankentryid" REFTABLE="question_bank_entries" REFFIELDS="id"/>
+        <KEY NAME="competencyid" TYPE="foreign" FIELDS="competencyid" REFTABLE="competency" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="entrycompetency" UNIQUE="true" FIELDS="questionbankentryid, competencyid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
