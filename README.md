@@ -1,1 +1,1 @@
-# qbank_competencies
+# moodle-qbank_competencies
